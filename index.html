@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EngiGuide Website</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b1020;
+            color: white;
+        }
+
+        header {
+            padding: 20px;
+            background: #151d35;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h2 {
+            color: #8b9cff;
+        }
+
+        header button, .hero button {
+            padding: 10px 16px;
+            background: #6878ff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 65px 20px;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .hero span {
+            color: #8b9cff;
+        }
+
+        .hero p {
+            color: #bdc6db;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        input {
+            width: 90%;
+            max-width: 450px;
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid #394564;
+            background: #151d35;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .courses {
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .courses h2 {
+            margin-bottom: 20px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            padding: 25px;
+            background: #151d35;
+            border: 1px solid #293452;
+            border-radius: 14px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #6878ff;
+        }
+
+        .card h3 {
+            margin: 15px 0 10px;
+        }
+
+        .card p {
+            color: #bdc6db;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        .card button {
+            padding: 10px 14px;
+            background: #6878ff;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 15px;
+            margin-top: 40px;
+            color: #9ca9c4;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h2>EngiGuide</h2>
+    <button onclick="showAbout()">About</button>
+</header>
+
+<section class="hero">
+    <h1>Learn Smarter.<br><span>Build Your Future.</span></h1>
+    <p>Your learning companion for engineering, coding and technology.</p>
+
+    <input
+        type="text"
+        id="search"
+        placeholder="Search Python, C++, AI..."
+        oninput="searchCourses()"
+    >
+    <br>
+
+    <button onclick="showAll()">Explore Courses</button>
+</section>
+
+<section class="courses" id="courses">
+    <h2>Explore Your Learning Path</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <div style="font-size:35px">🐍</div>
+            <h3>Python Programming</h3>
+            <p>Learn Python from basics to projects.</p>
+            <button onclick="openCourse('Python Programming')">
+                Start Learning
+            </button>
+        </div>
+
+        <div class="card">
+            <div style="font-size:35px">💻</div>
+            <h3>Web Development</h3>
+            <p>Build websites using HTML, CSS and JavaScript.</p>
+            <button onclick="openCourse('Web Development')">
+                Start Learning
+            </button>
+        </div>
+
+        <div class="card">
+            <div style="font-size:35px">🤖</div>
+            <h3>Artificial Intelligence</h3>
+            <p>Discover AI, machine learning and smart systems.</p>
+            <button onclick="openCourse('Artificial Intelligence')">
+                Start Learning
+            </button>
+        </div>
+
+        <div class="card">
+            <div style="font-size:35px">⚡</div>
+            <h3>C++ Programming</h3>
+            <p>Practice programming logic and problem-solving.</p>
+            <button onclick="openCourse('C++ Programming')">
+                Start Learning
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 EngiGuide | Learn • Practice • Grow</p>
+</footer>
+
+<script>
+    function openCourse(course) {
+        alert("Welcome to " + course + "!");
+    }
+
+    function showAbout() {
+        alert("EngiGuide helps students learn engineering and technology.");
+    }
+
+    function searchCourses() {
+        let input = document.getElementById("search").value.toLowerCase();
+        let cards = document.querySelectorAll(".card");
+
+        cards.forEach(function(card) {
+            let text = card.innerText.toLowerCase();
+            card.classList.toggle("hidden", !text.includes(input));
+        });
+    }
+
+    function showAll() {
+        document.getElementById("search").value = "";
+        searchCourses();
+        document.getElementById("courses").scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+</script>
+
+</body>
+</html>
